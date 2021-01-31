@@ -1,16 +1,16 @@
 import React from 'react'
-import Nav from '../../components/common/header/Dashboard'
+// import Nav from '../../components/common/header/Dashboard'
+import DashboardLayout from '../../styles/DashboardLayout';
 
 
 const LayoutDashboard = ({children}) => {
-  console.log(children);
     return (
-        <>
-          <Nav />
+        <DashboardLayout>
+          {/* <Nav /> */}
           <div style={{backgroundColor: "lightblue"}}>
             {children}
           </div>
-        </>
+        </DashboardLayout>
     )
 }
 

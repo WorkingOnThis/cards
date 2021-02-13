@@ -41,5 +41,9 @@ const GlobalStyle = createGlobalStyle`
         /* border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133)); */
         border-image: initial;
     }
+
+    a {
+        cursor: pointer;
+    }
 `
 export default GlobalStyle

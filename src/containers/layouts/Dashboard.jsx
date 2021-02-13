@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../../components/common/dashboard/Navbar';
+import Header from '../../components/common/dashboard/Header';
 
 import styled from 'styled-components'
 
@@ -15,7 +16,8 @@ const LayoutDashboard = ({children}) => {
     return (
         <DashboardLayout>
           <Navbar/>
-          <div style={{backgroundColor: "lightblue"}}>
+          <Header/>
+          <div>
             {children}
           </div>
         </DashboardLayout>

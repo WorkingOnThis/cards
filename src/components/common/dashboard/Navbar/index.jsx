@@ -1,7 +1,8 @@
-import styled from 'styled-components'
-import Header from './sections/Header';
-import Footer from './sections/Footer';
-import Body from './sections/Body';
+import { useState } from 'react';
+import styled, { css } from 'styled-components'
+import NavHeader from './sections/NavHeader';
+import NavFooter from './sections/NavFooter';
+import NavBody from './sections/NavBody';
 
 const Layout = styled.div`
   grid-area: nav;
@@ -22,20 +23,36 @@ const Nav = styled.nav`
   height: 100vh;
   transition: width .3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 256px;
+
+  ${props => props.collapsed && css`
+    @media only screen and (min-width: 600px)
+    {
+      width: 68px;
+    }
+  `}
 `;
 
 const LayoutDashboard = () => {
-    return (
-        <Layout>
-            <Nav>
-                <Header />
 
-                <Body />
+  const [isCollaped, setIsCollaped] = useState(false);
 
-                <Footer />
-            </Nav>
-        </Layout>
-    )
+  const handleClick = e => {
+    setIsCollaped(!isCollaped);
+  };
+
+  return (
+    <Layout>
+        <Nav collapsed={isCollaped}>
+
+          <NavHeader collapsed={isCollaped} />
+
+          <NavBody collapsed={isCollaped} />
+
+          <NavFooter collapsed={isCollaped} collapse={handleClick} />
+
+        </Nav>
+    </Layout>
+  )
 }
 
 export default LayoutDashboard;

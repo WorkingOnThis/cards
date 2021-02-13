@@ -17,7 +17,6 @@ const GroupHeader = styled.div`
     letter-spacing: .25px;
     max-width: 100%;
     padding: ${props => (props.expanded ? `20px 24px 0px` : `20px 24px`)};
-    /* padding: 20px 24px; */
     position: relative;
     text-align: left;
     transition: background-color .15s ease;
@@ -27,6 +26,11 @@ const GroupHeader = styled.div`
         /* background-color: var(--fire-color-sidenav-bg-selected); */
         transition: background-color .2s cubic-bezier(0.4, 0, 0.2, 1),padding .3s ease;
     `};
+
+    :hover {
+        background-color: ${props => (props.expanded ? ` rgba(71,98,130,0.4)` : `rgba(255,255,255,.08)`)};
+    }
+
 `;
 
 const Icon = styled(KeyboardArrowUp)`
@@ -36,7 +40,6 @@ const Icon = styled(KeyboardArrowUp)`
     position: absolute;
     right: 8px;
     top: 20px;
-    /* transform: rotate(180deg); */
     transform: ${props => (props.expanded ? `rotate(0deg)` : `rotate(180deg)`)};
     transition: opacity .3s cubic-bezier(0.4, 0, 0.2, 1), transform .3s cubic-bezier(0.4, 0, 0.2, 1);
     background-repeat: no-repeat;
@@ -69,9 +72,17 @@ const SubtitleCategoryItem = styled.div`
 
 const GroupNavLinks = styled.div`
     padding-bottom: 20px;
+    background-color: rgba(71,98,130,0.2);
+
+    ${props => props.collapsed && css`
+        @media only screen and (min-width: 600px)
+        {
+            padding: 6px 0;
+        }
+    `}
 `;
 
-const CategoryItem = () => {
+const NavCategoryItem = ({collapsed}) => {
     const [isToggled, setIsToggled] = useState(false);
 
     const handleClick = e => {
@@ -79,23 +90,29 @@ const CategoryItem = () => {
     };
     
     return (
-        <Container onClick={handleClick}>
-            <GroupHeader expanded={isToggled}>
-                <TitleCategoryItem>
-                    Compilación
-                </TitleCategoryItem>
-                <Icon expanded={isToggled} />
-                <SubtitleCategoryItem expanded={isToggled}>
-                    Authentication, Cloud Firestore, Realtime Database, Storage, Hosting, Functions y Machine Learning
-                </SubtitleCategoryItem>
-            </GroupHeader>
+        <Container>
+            { !collapsed &&
+                <GroupHeader expanded={isToggled} collapsed={collapsed} onClick={handleClick}>
+                    <TitleCategoryItem>
+                        Compilación
+                    </TitleCategoryItem>
+                    <Icon expanded={isToggled} />
+                    <SubtitleCategoryItem expanded={isToggled}>
+                        Authentication, Cloud Firestore, Realtime Database, Storage, Hosting, Functions y Machine Learning
+                    </SubtitleCategoryItem>
+                </GroupHeader>
+            }
 
-            <GroupNavLinks expanded={isToggled}>
-                <NavLinkItem/>
-            </GroupNavLinks>
+            { isToggled &&
+                <GroupNavLinks collapsed={collapsed}>
+                    <NavLinkItem collapsed={collapsed} nameIcon="UserFriends" nameLink="Authentication"/>
+                    <NavLinkItem collapsed={collapsed} nameIcon="Adobe" nameLink="Adobe"/>
+                    <NavLinkItem collapsed={collapsed} nameIcon="Apple" nameLink="Marcas"/>
+                </GroupNavLinks>
+            }
             
         </Container>
     )
 }
 
-export default CategoryItem;
+export default NavCategoryItem;

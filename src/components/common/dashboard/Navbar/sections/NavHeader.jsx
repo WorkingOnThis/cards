@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Anchor = styled.a`
     box-shadow: 0 -1px 0 rgb(255,255,255,0.1) inset;
@@ -25,17 +25,23 @@ const LogoText = styled.img.attrs({
     height: 18px;
     margin-left: 12px;
     transition: opacity .3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    ${props => props.collapsed && css`
+        {
+            opacity: 0;
+        }
+    `}
 `
 
-const Header = () => {
+const NavHeader = ({collapsed}) => {
     return (
         <Anchor>
             <Container>
                 <LogoImage />
-                <LogoText />
+                <LogoText collapsed={collapsed}/>
             </Container>
         </Anchor>
     )
 }
 
-export default Header;
+export default NavHeader;

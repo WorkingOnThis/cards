@@ -61,7 +61,7 @@ const Profile = () => {
   return (
     <Container>
       <div>
-        <a href="www.google.com">
+        <a href="/dashboard">
           <img src={'https://lh3.googleusercontent.com/ogw/ADGmqu-BLNHc0GkZg4_5CDaqWO7ZiGjQZ2G5dANAAFWiLg=s32-c-mo'} alt="avatar"/>
         </a>
       </div>

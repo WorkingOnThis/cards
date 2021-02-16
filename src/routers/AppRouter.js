@@ -2,17 +2,17 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 // Layout wrappers
-import LayoutDashboard from '../containers/layouts/Dashboard'
-import LayoutMain from '../containers/layouts/Main'
+import LayoutDashboard from '../components/layouts/Dashboard'
+import LayoutMain from '../components/layouts/Main'
 
 // Views
-import About from '../containers/views/main/About'
-import Home from '../containers/views/main/Home'
-import Login from '../containers/views/main/Login'
+import About from '../views/main/About'
+import Home from '../views/main/Home'
+import Login from '../views/main/Login'
 
 // Dashboard Views
-import Settings from '../containers/views/dashboard/Settings'
-import Dashboard from '../containers/views/dashboard/Home'
+import Settings from '../views/dashboard/Settings'
+import Dashboard from '../views/dashboard/Home'
 
 
 export const AppRouter = () => {

@@ -16,12 +16,15 @@ const Layout = styled.div`
 
 
 const Header = () => {
+
+  const bgColor = 'linear-gradient(to right, rgb(239, 108, 0), rgb(251, 140, 0))';
+
   return (
     <Layout>
 
       {/* <AppBarBanner /> */}
 
-      <AppBar />
+      <AppBar bgColor={bgColor} />
 
     </Layout>
   )

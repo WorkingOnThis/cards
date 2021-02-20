@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import Left from './sections/Left';
 import Middle from './sections/Middle';
@@ -9,9 +10,8 @@ const Container = styled.div`
 
 const AppBar = styled.div`
     align-items: stretch;
-    background: transparent;
-    /* background: #1a73e8; */
     /* background: var(--fire-color-canvas); */
+    background: ${props => props.bgScrolled};
     box-shadow: none;
     box-sizing: border-box;
     display: grid;
@@ -23,16 +23,29 @@ const AppBar = styled.div`
     transition: box-shadow .15s cubic-bezier(0.4, 0, 1, 1),background-color .15s cubic-bezier(0.4, 0, 1, 1);
     width: 100%;
 
+    ${({ bgScrolled }) => bgScrolled !== 'transparent' && `
+        box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 30%), 0px 1px 3px 1px rgb(60 64 67 / 15%);
+    `}
+
     & > * {
         display: flex;
         align-items: center;
     }
 `
 
-const Appbar = () => {
+const Appbar = ({ bgColor }) => {
+
+    const [bgScrolled, setBgScrolled] = useState('transparent');
+
+    const changeBackground = () => {
+        window.scrollY >= 48 ? setBgScrolled(bgColor) : setBgScrolled('transparent')
+    }
+
+    window.addEventListener('scroll', changeBackground)
+
     return (
         <Container>
-            <AppBar>
+            <AppBar bgScrolled={bgScrolled}>
                 <Left/>
                 <Middle/>
                 <Right/>
